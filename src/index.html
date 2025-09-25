@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon.png" />
+  </head>
+  <body>
+    <h1>Flashcard Demo</h1>
+
+    <!-- Nút toggle theme -->
+    <button id="themeToggleBtn">Chuyển chế độ</button>
+
+    <!-- Thẻ flashcard -->
+    <div id="flashcard" class="card" onclick="flipCard()">Nhấn để lật thẻ</div>
+    <!-- Số thứ tự thẻ -->
+    <div id="cardCounter" class="counter">Thẻ 1/1</div>
+
+    <!-- Nút điều khiển -->
+    <div class="controls">
+      <button id="nextBtn">Tiếp theo</button>
+      <button id="addBtn">Thêm thẻ mới</button>
+      <button id="editBtn">Sửa thẻ</button>
+      <button id="deleteBtn">Xóa thẻ</button>
+    </div>
+
+    <!-- Form thêm/sửa thẻ -->
+    <div id="cardForm" class="card hidden" role="dialog" aria-hidden="true">
+      <h2 id="formTitle">Thêm thẻ</h2>
+
+      <label for="frontInput">Mặt trước</label>
+      <textarea id="frontInput" placeholder="Nội dung mặt trước"></textarea>
+
+      <label for="backInput">Mặt sau</label>
+      <textarea
+        id="backInput"
+        placeholder="Nội dung mặt sau (gợi ý/đáp án)"
+      ></textarea>
+
+      <div class="actions">
+        <button id="saveBtn">Lưu</button>
+        <button id="cancelBtn">Hủy</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      // Đăng ký service worker
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('sw.js')
+          .then((reg) => {
+            console.log('Service Worker đăng ký thành công:', reg.scope);
+          })
+          .catch((err) => {
+            console.log('Đăng ký Service Worker thất bại:', err);
+          });
+      }
+    </script>
+  </body>
+</html>

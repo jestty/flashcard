@@ -1,0 +1,23 @@
+{
+  "name": "flashCard-pwa",
+  "version": "1.0.0",
+  "description": "A progressive web app for creating and managing flashcards.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'",
+    "test": "echo 'Test step not defined'"
+  },
+  "keywords": [
+    "flashcard",
+    "pwa",
+    "web",
+    "application"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
