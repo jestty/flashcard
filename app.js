@@ -133,6 +133,12 @@ function deleteCard() {
   saveCards();
   renderCard();
 }
+/*------hàm trượt------*/
+function prevCard() {
+  if (cards.length === 0) return;
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  renderCard();
+}
 
 /* --------- Dark Mode --------- */
 function applyThemeByTime() {
@@ -179,3 +185,30 @@ document.addEventListener('DOMContentLoaded', () => {
   applyThemeByTime();
   setInterval(applyThemeByTime, 5 * 60 * 1000); // update mỗi 5 phút
 });
+  /* --- Swipe detection --- */
+  let startX = 0;
+
+  const cardEl = document.getElementById('flashcard');
+  if (cardEl) {
+    cardEl.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+    });
+
+    cardEl.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].screenX;
+      const diff = endX - startX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) {
+          // Vuốt sang trái → thẻ tiếp theo
+          nextCard();
+        } else {
+          // Vuốt sang phải → thẻ trước
+          prevCard();
+        }
+      } else {
+        // Nếu không phải vuốt → coi là tap để lật
+        flipCard();
+      }
+    });
+  }
